@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Interactiva · Tamizaje de Cáncer de Próstata (USPSTF 2018) · Parcial Prima Vicky</title>
+<style>
+  :root{
+    --rojo:#b0152e;        /* rojo JAMA */
+    --rojo-osc:#7c0f20;
+    --navy:#16263d;
+    --azul:#1f5f8b;
+    --verde:#1f8b5f;
+    --ambar:#d98b16;
+    --bg:#f4f6f9;
+    --card:#ffffff;
+    --texto:#1d2630;
+    --muted:#5d6b7a;
+    --linea:#e2e8f0;
+    --sombra:0 4px 18px rgba(20,38,61,.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--texto);line-height:1.6;font-size:16px;
+  }
+  /* ---------- HEADER ---------- */
+  header.hero{
+    background:linear-gradient(135deg,var(--navy) 0%,#0d1a2b 100%);
+    color:#fff;padding:42px 22px 30px;position:relative;overflow:hidden;
+  }
+  header.hero::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    background:radial-gradient(circle,var(--rojo) 0%,transparent 70%);opacity:.35;
+  }
+  .hero-inner{max-width:1080px;margin:0 auto;position:relative;z-index:2;}
+  .badge{display:inline-block;background:var(--rojo);color:#fff;font-size:12px;font-weight:700;
+    letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:30px;margin-bottom:14px;}
+  header.hero h1{margin:0 0 6px;font-size:30px;line-height:1.2;}
+  header.hero .sub{font-size:17px;color:#c7d4e2;margin:0 0 18px;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+  .meta-chip{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+    padding:6px 13px;border-radius:8px;font-size:13.5px;}
+  .meta-chip b{color:#fff;}
+  /* ---------- NAV ---------- */
+  nav.toc{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--linea);
+    box-shadow:0 2px 10px rgba(0,0,0,.04);}
+  .toc-inner{max-width:1080px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:8px 12px;}
+  .toc-inner a{white-space:nowrap;text-decoration:none;color:var(--navy);font-size:13.5px;font-weight:600;
+    padding:7px 12px;border-radius:7px;transition:.15s;}
+  .toc-inner a:hover{background:var(--bg);color:var(--rojo);}
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1080px;margin:0 auto;padding:26px 18px 80px;}
+  section{margin-bottom:34px;scroll-margin-top:60px;}
+  h2.sec{font-size:23px;color:var(--navy);border-left:5px solid var(--rojo);padding-left:13px;margin:0 0 4px;}
+  .sec-desc{color:var(--muted);margin:0 0 16px;font-size:15px;}
+  /* ---------- CARDS ---------- */
+  .card{background:var(--card);border:1px solid var(--linea);border-radius:14px;padding:20px 22px;
+    box-shadow:var(--sombra);margin-bottom:16px;}
+  .grid{display:grid;gap:14px;}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));}
+  /* ---------- COLLAPSIBLES ---------- */
+  details.col{background:var(--card);border:1px solid var(--linea);border-radius:12px;margin-bottom:12px;
+    overflow:hidden;box-shadow:0 2px 8px rgba(20,38,61,.05);transition:.2s;}
+  details.col[open]{box-shadow:var(--sombra);border-color:#cbd6e2;}
+  details.col>summary{cursor:pointer;list-style:none;padding:15px 20px;font-weight:700;font-size:16.5px;
+    color:var(--navy);display:flex;align-items:center;gap:12px;user-select:none;}
+  details.col>summary::-webkit-details-marker{display:none;}
+  details.col>summary .chev{margin-left:auto;transition:.25s;color:var(--rojo);font-size:18px;}
+  details.col[open]>summary .chev{transform:rotate(90deg);}
+  details.col>summary .tag{font-size:11px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:20px;color:#fff;}
+  .t-azul{background:var(--azul);} .t-rojo{background:var(--rojo);} .t-verde{background:var(--verde);}
+  .t-ambar{background:var(--ambar);} .t-navy{background:var(--navy);}
+  .col-body{padding:0 20px 18px;border-top:1px solid var(--linea);margin-top:-2px;}
+  .col-body p:first-child{margin-top:14px;}
+  /* ---------- KEY POINTS ---------- */
+  .keys{background:#fff6f7;border:1px solid #f3cdd4;border-left:4px solid var(--rojo);border-radius:8px;
+    padding:12px 16px;margin:14px 0;}
+  .keys h4{margin:0 0 6px;color:var(--rojo-osc);font-size:14px;text-transform:uppercase;letter-spacing:.5px;}
+  .keys ul{margin:6px 0 0;padding-left:20px;}
+  .keys li{margin-bottom:4px;}
+  /* ---------- MNEMONIC ---------- */
+  .mnemo{background:linear-gradient(135deg,#fff8e8,#fff2d6);border:1px dashed var(--ambar);border-radius:10px;
+    padding:14px 18px;margin:14px 0;}
+  .mnemo .lbl{display:inline-block;background:var(--ambar);color:#fff;font-size:11px;font-weight:800;
+    letter-spacing:1px;padding:3px 10px;border-radius:20px;margin-bottom:8px;text-transform:uppercase;}
+  .mnemo b{color:var(--rojo);}
+  /* ---------- TAG WORDS ---------- */
+  .kw{display:inline-block;background:#eef3f8;border:1px solid #d6e0ea;color:var(--navy);
+    font-size:13px;padding:4px 11px;border-radius:20px;margin:3px 4px 3px 0;font-weight:600;}
+  .kw b{color:var(--rojo);}
+  /* ---------- GRADE TABLE ---------- */
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14.5px;}
+  th,td{border:1px solid var(--linea);padding:9px 12px;text-align:left;vertical-align:top;}
+  th{background:var(--navy);color:#fff;font-size:13.5px;}
+  tr:nth-child(even) td{background:#f8fafc;}
+  .gA{color:#1f8b5f;font-weight:800;} .gB{color:#2f9e7a;font-weight:800;}
+  .gC{color:var(--ambar);font-weight:800;} .gD{color:var(--rojo);font-weight:800;}
+  .gI{color:var(--muted);font-weight:800;}
+  /* ---------- DATA NUMBERS ---------- */
+  .stat{background:var(--card);border:1px solid var(--linea);border-radius:12px;padding:16px;text-align:center;
+    box-shadow:0 2px 8px rgba(20,38,61,.05);}
+  .stat .n{font-size:30px;font-weight:800;color:var(--rojo);line-height:1;}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:6px;}
+  /* ---------- TABLA 1000 ---------- */
+  .t1000 td:nth-child(2){text-align:center;font-weight:800;color:var(--navy);width:90px;}
+  .t1000 .hl td{background:#fff6f7 !important;}
+  .t1000 .hl td:nth-child(2){color:var(--rojo);}
+  /* ---------- QUIZ ---------- */
+  .quiz-q{background:var(--card);border:1px solid var(--linea);border-radius:12px;padding:18px 20px;
+    margin-bottom:14px;box-shadow:0 2px 8px rgba(20,38,61,.05);}
+  .quiz-q .qnum{font-size:12px;font-weight:800;color:var(--rojo);letter-spacing:1px;}
+  .quiz-q .qtext{font-weight:700;font-size:16px;color:var(--navy);margin:5px 0 12px;}
+  .opt{display:block;width:100%;text-align:left;background:#f8fafc;border:1.5px solid var(--linea);
+    border-radius:9px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:15px;font-family:inherit;
+    transition:.15s;color:var(--texto);}
+  .opt:hover{border-color:var(--azul);background:#eef5fb;}
+  .opt.ok{border-color:var(--verde);background:#e9f7f0;color:#0d6b43;font-weight:600;}
+  .opt.no{border-color:var(--rojo);background:#fdecef;color:var(--rojo-osc);}
+  .opt:disabled{cursor:default;}
+  .feedback{margin-top:8px;font-size:14px;padding:10px 13px;border-radius:8px;display:none;}
+  .feedback.show{display:block;}
+  .feedback.good{background:#e9f7f0;color:#0d6b43;border:1px solid #b7e3cd;}
+  .feedback.bad{background:#fdecef;color:var(--rojo-osc);border:1px solid #f3cdd4;}
+  #score{position:sticky;bottom:14px;margin:18px auto 0;max-width:320px;background:var(--navy);color:#fff;
+    text-align:center;padding:12px;border-radius:12px;font-weight:700;box-shadow:var(--sombra);}
+  /* ---------- STUDY PLAN ---------- */
+  .step{display:flex;gap:14px;margin-bottom:12px;align-items:flex-start;}
+  .step .num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--rojo);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;}
+  .step .txt{padding-top:3px;}
+  .step .txt b{color:var(--navy);}
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy);color:#c7d4e2;text-align:center;padding:24px;font-size:13.5px;}
+  footer b{color:#fff;}
+  .pill{display:inline-block;background:var(--rojo);color:#fff;font-weight:700;padding:2px 9px;border-radius:6px;font-size:13px;}
+  .pillg{display:inline-block;background:var(--verde);color:#fff;font-weight:700;padding:2px 9px;border-radius:6px;font-size:13px;}
+  mark{background:#fff2a8;padding:0 3px;border-radius:3px;}
+  .alert{background:#fdf3e7;border:1px solid #f0d6a8;border-radius:10px;padding:13px 16px;margin:14px 0;font-size:14.5px;}
+  @media(max-width:600px){
+    body{font-size:15.5px;}
+    header.hero{padding:30px 16px 22px;}
+    header.hero h1{font-size:23px;}
+    header.hero .sub{font-size:15px;}
+    .stat .n{font-size:23px;}
+    main{padding:20px 13px 64px;}
+    h2.sec{font-size:20px;}
+    .card{padding:16px 15px;}
+    .col-body{padding:0 15px 16px;}
+    details.col>summary{padding:13px 15px;font-size:15.5px;}
+    table{font-size:12.8px;}
+    th,td{padding:7px 8px;word-break:break-word;}
+    .toc-inner a{font-size:13px;padding:6px 10px;}
+    .meta-chip{font-size:12px;}
+    #score{max-width:90%;font-size:14px;}
+  }
+  @media print{
+    nav.toc,#score{display:none;}
+    details.col{break-inside:avoid;}
+    details.col>summary .chev{display:none;}
+    details.col[open]{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge">JAMA · US Preventive Services Task Force · 2018</span>
+    <h1>Tamizaje del Cáncer de Próstata (PSA)</h1>
+    <p class="sub">Guía interactiva de estudio para el parcial — todo lo que necesitas para sacar <b style="color:#fff">5.0</b></p>
+    <div class="meta-row">
+      <span class="meta-chip"><b>Documento:</b> USPSTF Recommendation Statement</span>
+      <span class="meta-chip"><b>Cita:</b> JAMA. 2018;319(18):1901-1913</span>
+      <span class="meta-chip"><b>Tema central:</b> Tamizaje con PSA</span>
+      <span class="meta-chip"><b>Lo nuclear:</b> Grado C (55–69) · Grado D (≥70)</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#plan">📚 Plan de estudio</a>
+    <a href="#mapa">🗺️ Mapa general</a>
+    <a href="#recom">⭐ Recomendaciones</a>
+    <a href="#grados">🅰️ Grados USPSTF</a>
+    <a href="#epi">📊 Epidemiología</a>
+    <a href="#psa">🧪 PSA / Detección</a>
+    <a href="#riesgo">⚠️ Factores de riesgo</a>
+    <a href="#benef">✅ Beneficios</a>
+    <a href="#danos">❌ Daños</a>
+    <a href="#trat">🏥 Tratamientos</a>
+    <a href="#ensayos">🔬 Ensayos (PLCO/ERSPC/CAP)</a>
+    <a href="#poblac">👥 Poblaciones especiales</a>
+    <a href="#cambio">🔄 Cambio 2012→2018</a>
+    <a href="#otros">🏛️ Otras guías</a>
+    <a href="#argumentos">⚖️ Argumentos (debate)</a>
+    <a href="#tabla">🧮 Tabla de 1000</a>
+    <a href="#palabras">🔑 Palabras clave</a>
+    <a href="#inolvidables">🧠 Inolvidables</a>
+    <a href="#quiz">📝 Autoevaluación</a>
+    <a href="#resumen">⚡ Resumen 1 página</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ PLAN DE ESTUDIO ============ -->
+<section id="plan">
+  <h2 class="sec">📚 Cómo trabajar este tema para sacar 5.0</h2>
+  <p class="sec-desc">Método de estudio en capas: primero el esqueleto (lo que casi siempre preguntan), luego el detalle, y al final autoevaluación. No memorices todo de golpe.</p>
+  <div class="card">
+    <div class="step"><div class="num">1</div><div class="txt"><b>Ancla mental (5 min):</b> aprende PRIMERO las 2 recomendaciones núcleo — <span class="pill">55–69 = C (decisión individual)</span> y <span class="pill">≥70 = D (NO tamizar)</span>. Si solo recordaras esto, ya tienes la columna vertebral del parcial.</div></div>
+    <div class="step"><div class="num">2</div><div class="txt"><b>Marco USPSTF (15 min):</b> domina qué significa cada <b>Grado (A–B–C–D–I)</b> y los <b>niveles de certeza</b> (alta/moderada/baja). Es el "idioma" del documento y casi siempre cae.</div></div>
+    <div class="step"><div class="num">3</div><div class="txt"><b>Los 3 pilares clínicos (30 min):</b> (a) qué es y qué limita al <b>PSA</b>, (b) <b>factores de riesgo</b> (edad, raza afroamericana, antecedente familiar), (c) <b>beneficios vs daños</b> (sobrediagnóstico, falsos positivos, daños del tratamiento).</div></div>
+    <div class="step"><div class="num">4</div><div class="txt"><b>Evidencia (20 min):</b> distingue los <b>3 ensayos</b> — PLCO (negativo, EE.UU.), ERSPC (positivo, Europa, NNT 781), CAP (negativo, Reino Unido). Asocia cada uno con su resultado y limitación.</div></div>
+    <div class="step"><div class="num">5</div><div class="txt"><b>Números clave (15 min):</b> memoriza la <b>"tabla de los 1000 hombres"</b> con los redondeos (1.3 muertes evitadas, 3 metástasis evitadas, 100 diagnosticados, 240 PSA+, etc.).</div></div>
+    <div class="step"><div class="num">6</div><div class="txt"><b>Consolidación (15 min):</b> repasa las <b>mnemotecnias "inolvidables"</b> y resuelve la <b>autoevaluación</b>. Repite el quiz hasta acertar todo sin pensar.</div></div>
+  </div>
+  <div class="alert">💡 <b>Regla de oro del parcial:</b> casi todas las preguntas se reducen a una de estas 4 ideas → <b>(1)</b> a quién se tamiza y con qué grado, <b>(2)</b> qué mide el PSA y sus limitaciones, <b>(3)</b> beneficios pequeños vs daños frecuentes, <b>(4)</b> qué cambió de 2012 a 2018. Si dominas esas 4, dominas el examen.</div>
+</section>
+
+<!-- ============ MAPA ============ -->
+<section id="mapa">
+  <h2 class="sec">🗺️ Mapa general del documento</h2>
+  <p class="sec-desc">El "esqueleto" lógico del USPSTF: epidemiología → prueba → riesgo → balance beneficio/daño → evidencia → recomendación.</p>
+  <div class="card">
+    <div class="grid grid-3">
+      <div class="stat"><div class="n">¿A quién?</div><div class="l">Hombres asintomáticos, sin diagnóstico previo. Foco: 55–69 y ≥70 años.</div></div>
+      <div class="stat"><div class="n">¿Con qué?</div><div class="l">Tamizaje basado en PSA (antígeno prostático específico) en sangre.</div></div>
+      <div class="stat"><div class="n">¿Para qué?</div><div class="l">Detectar cáncer localizado de alto riesgo y prevenir muerte/metástasis.</div></div>
+      <div class="stat"><div class="n">El conflicto</div><div class="l">Beneficio PEQUEÑO vs daños FRECUENTES (sobrediagnóstico y sobretratamiento).</div></div>
+      <div class="stat"><div class="n">La salida</div><div class="l">Decisión informada y compartida (shared decision making).</div></div>
+      <div class="stat"><div class="n">El veredicto</div><div class="l">C en 55–69 · D en ≥70.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECOMENDACIONES ============ -->
+<section id="recom">
+  <h2 class="sec">⭐ Las recomendaciones (LO MÁS IMPORTANTE)</h2>
+  <p class="sec-desc">Esto es lo primero que debes saber decir de memoria. Es el corazón del parcial.</p>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-top:4px solid var(--ambar);">
+      <h3 style="margin-top:0;color:var(--navy)">Hombres <span style="color:var(--ambar)">55 – 69 años</span></h3>
+      <p style="font-size:22px;margin:4px 0"><span class="gC">GRADO C</span></p>
+      <p>La decisión de tamizarse debe ser <b>individual</b>. Antes de decidir, el hombre debe tener la <b>oportunidad de discutir beneficios y daños con su clínico</b> e incorporar sus <b>valores y preferencias</b>.</p>
+      <p>El tamizaje ofrece un <b>beneficio potencial pequeño</b> de reducir la muerte por cáncer de próstata en algunos hombres. <b>No se debe tamizar</b> a quien no expresa preferencia por hacerlo.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--rojo);">
+      <h3 style="margin-top:0;color:var(--navy)">Hombres <span style="color:var(--rojo)">70 años o más</span></h3>
+      <p style="font-size:22px;margin:4px 0"><span class="gD">GRADO D</span></p>
+      <p>El USPSTF <b>recomienda EN CONTRA</b> del tamizaje basado en PSA.</p>
+      <p>Los beneficios potenciales <b>NO superan</b> los daños esperados: mayor riesgo de falsos positivos, daños de la biopsia, sobrediagnóstico y daños del tratamiento. Además, mueren más por <b>otras causas</b> antes de que el cáncer cause daño.</p>
+    </div>
+  </div>
+
+  <div class="keys">
+    <h4>🎯 Puntos clave</h4>
+    <ul>
+      <li>El nivel de <b>certeza es MODERADO</b> en ambas recomendaciones (no alto).</li>
+      <li>"C" NO significa "no tamizar a nadie": significa <b>ofrecer selectivamente</b> según preferencias del paciente.</li>
+      <li>El USPSTF <b>no considera costos</b>, solo el balance beneficio–daño.</li>
+      <li>El <b>examen rectal digital NO se recomienda</b> como método de tamizaje (falta evidencia de beneficio).</li>
+    </ul>
+  </div>
+
+  <div class="mnemo">
+    <span class="lbl">🧠 Inolvidable</span>
+    <p style="margin:0"><b>"55 a 69, tú deCides (C) · 70, Detente (D)"</b><br>
+    La <b>C</b> de <b>C</b>onversar/eleg<b>i</b>r en los de mediana edad; la <b>D</b> de <b>D</b>etente / <b>D</b>esaconsejado en los mayores de 70.</p>
+  </div>
+</section>
+
+<!-- ============ GRADOS ============ -->
+<section id="grados">
+  <h2 class="sec">🅰️ El sistema de Grados USPSTF y niveles de certeza</h2>
+  <p class="sec-desc">El "idioma" del documento. Entiende qué dice cada grado y qué acción sugiere. Casi seguro cae en el parcial.</p>
+
+  <details class="col" open>
+    <summary><span class="tag t-navy">TABLA</span> Significado de los Grados A · B · C · D · I <span class="chev">›</span></summary>
+    <div class="col-body">
+      <table>
+        <tr><th>Grado</th><th>Definición</th><th>Acción sugerida</th></tr>
+        <tr><td><span class="gA">A</span></td><td>Recomienda el servicio. <b>Alta certeza</b> de beneficio neto <b>sustancial</b>.</td><td>Ofrecer / proveer.</td></tr>
+        <tr><td><span class="gB">B</span></td><td>Recomienda. Alta certeza de beneficio <b>moderado</b>, o certeza moderada de beneficio moderado–sustancial.</td><td>Ofrecer / proveer.</td></tr>
+        <tr><td><span class="gC">C</span></td><td>Ofrecer/proveer <b>selectivamente</b> según juicio profesional y preferencias. Al menos certeza moderada de beneficio neto <b>pequeño</b>.</td><td>Ofrecer a pacientes seleccionados. <b>(← 55–69 años)</b></td></tr>
+        <tr><td><span class="gD">D</span></td><td><b>Recomienda EN CONTRA.</b> Certeza moderada–alta de que no hay beneficio neto o que los daños superan los beneficios.</td><td>Desalentar el uso. <b>(← ≥70 años)</b></td></tr>
+        <tr><td><span class="gI">I</span></td><td>Evidencia <b>insuficiente</b>; el balance no puede determinarse.</td><td>Leer consideraciones clínicas; informar la incertidumbre.</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-azul">CONCEPTO</span> Niveles de certeza del beneficio neto <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p><b>Beneficio neto = beneficios − daños</b> del servicio aplicado en atención primaria general.</p>
+      <table>
+        <tr><th>Nivel</th><th>Qué significa</th></tr>
+        <tr><td><b>Alta</b></td><td>Evidencia consistente de estudios bien diseñados en poblaciones representativas. <b>Poco probable</b> que cambie con estudios futuros.</td></tr>
+        <tr><td><b>Moderada</b></td><td>Evidencia suficiente, pero limitada por número/tamaño/calidad, inconsistencia o poca generalización. La conclusión <b>podría cambiar</b>. <mark>← es la del PSA</mark></td></tr>
+        <tr><td><b>Baja</b></td><td>Evidencia <b>insuficiente</b> por fallos de diseño, brechas o falta de generalización.</td></tr>
+      </table>
+      <div class="keys"><h4>🎯 Punto clave</h4><ul><li>Toda la recomendación del PSA descansa en <b>certeza MODERADA</b> — ni alta ni baja.</li></ul></div>
+    </div>
+  </details>
+
+  <div class="mnemo">
+    <span class="lbl">🧠 Inolvidable</span>
+    <p style="margin:0"><b>A</b>delante (sustancial) · <b>B</b>ien (moderado) · <b>C</b>onversa (pequeño/selectivo) · <b>D</b>etente (en contra) · <b>I</b>ncierto (insuficiente).</p>
+  </div>
+
+  <div class="alert">📌 <b>Aclaración fina (puede sumar puntos):</b> el sistema de letras A–B–C–D–I es el sistema <b>propio del USPSTF</b>. Técnicamente NO es lo mismo que la metodología formal <b>GRADE</b> (otra herramienta de graduación de evidencia usada por Cochrane/OMS). Si la rúbrica dice “aplicar GRADE”, casi seguro se refiere a <b>aplicar el GRADO de recomendación</b> (C para 55–69, D para ≥70) con su nivel de certeza. Si te preguntan, puedes anotar esa diferencia: demuestra que dominas el marco.</div>
+</section>
+
+<!-- ============ EPIDEMIOLOGÍA ============ -->
+<section id="epi">
+  <h2 class="sec">📊 Epidemiología y carga de la enfermedad</h2>
+  <p class="sec-desc">Los números que dan contexto: el cáncer de próstata es común, pero matar mata poco y tarde.</p>
+  <div class="grid grid-3">
+    <div class="stat"><div class="n">≈11%</div><div class="l">Riesgo de por vida de ser <b>diagnosticado</b></div></div>
+    <div class="stat"><div class="n">2.5%</div><div class="l">Riesgo de por vida de <b>morir</b> de cáncer de próstata</div></div>
+    <div class="stat"><div class="n">80 años</div><div class="l">Edad <b>media de muerte</b> por cáncer de próstata</div></div>
+  </div>
+
+  <details class="col">
+    <summary><span class="tag t-azul">DETALLE</span> La paradoja central del cáncer de próstata <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p>Muchos hombres con cáncer de próstata <b>nunca tienen síntomas</b> y, sin tamizaje, nunca sabrían que lo tienen. En estudios de autopsia de hombres que murieron por <b>otras causas</b>:</p>
+      <ul>
+        <li>Más del <b>20%</b> de los de 50–59 años tenían cáncer de próstata.</li>
+        <li>Más del <b>33%</b> de los de 70–79 años lo tenían.</li>
+      </ul>
+      <p>La mayoría son lesiones <b>microscópicas y bien diferenciadas</b> que no afectan la salud. Más de <b>2/3</b> de los hombres que mueren <b>por</b> cáncer de próstata tienen más de 75 años.</p>
+      <div class="keys"><h4>🎯 Idea fuerza</h4><ul><li>Es un cáncer <b>muy frecuente pero poco letal y de evolución lenta</b>. Por eso el tamizaje detecta muchos cánceres que nunca iban a importar → sobrediagnóstico.</li></ul></div>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-rojo">RIESGO</span> Disparidad racial en mortalidad <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p>Riesgo de por vida de <b>morir</b> de cáncer de próstata por grupo:</p>
+      <table>
+        <tr><th>Grupo</th><th>Riesgo de muerte de por vida</th></tr>
+        <tr><td><b>Afroamericanos</b></td><td><span class="gD">4.2%</span></td></tr>
+        <tr><td>Hispanos</td><td>2.9%</td></tr>
+        <tr><td>Blancos</td><td>2.3%</td></tr>
+        <tr><td>Asiáticos / Islas del Pacífico</td><td>2.1%</td></tr>
+      </table>
+      <p>Hombres afroamericanos: más del <b>doble</b> de probabilidad de morir (44.1 vs 19.1 por 100.000) y casi el doble de incidencia (203.5 vs 121.9 por 100.000) frente a blancos.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ============ PSA ============ -->
+<section id="psa">
+  <h2 class="sec">🧪 El PSA y la detección</h2>
+  <p class="sec-desc">Qué es la prueba, qué mide y por qué falla. Concepto muy preguntado.</p>
+
+  <details class="col" open>
+    <summary><span class="tag t-azul">CLAVE</span> ¿Qué es el PSA y qué lo eleva? <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p>El tamizaje empieza con una prueba que mide la cantidad de proteína <b>PSA (antígeno prostático específico)</b> en la <b>sangre</b>.</p>
+      <p>Un PSA elevado <b>puede</b> deberse a cáncer, pero <b>también</b> a causas benignas:</p>
+      <ul>
+        <li><b>Próstata agrandada</b> (hiperplasia prostática benigna, HPB).</li>
+        <li><b>Inflamación de la próstata</b> (prostatitis).</li>
+      </ul>
+      <p>Por eso muchos hombres <b>sin</b> cáncer tienen un resultado positivo → <b>falso positivo</b>.</p>
+      <p>El hombre con PSA positivo puede ir a <b>biopsia con aguja gruesa guiada por ecografía transrectal</b> para confirmar el diagnóstico.</p>
+      <div class="keys"><h4>🎯 Puntos clave</h4><ul>
+        <li>El PSA <b>no es específico de cáncer</b>: se eleva también por HPB y prostatitis.</li>
+        <li>El <b>tacto/examen rectal digital NO se recomienda</b> como tamizaje.</li>
+        <li>No hay evidencia suficiente para preferir un solo protocolo de PSA (umbral, velocidad, PSA libre, calculadoras de riesgo o imágenes adyuvantes).</li>
+      </ul></div>
+      <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0">PSA alto = <b>"Cáncer, Crecimiento o Candela"</b> → <b>C</b>áncer, <b>C</b>recimiento benigno (HPB) o <b>C</b>andela/inflamación (prostatitis).</p></div>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-rojo">¡OJO!</span> Desempeño diagnóstico: sensibilidad, especificidad, FP y FN <span class="chev">›</span></summary>
+    <div class="col-body">
+      <div class="alert">⚠️ <b>Corrección importante para el debate:</b> el artículo del USPSTF <b>NO da cifras exactas</b> de sensibilidad/especificidad del PSA. Si usas números (ej. 90% / 80%), aclara siempre que son un <b>ejemplo ilustrativo del concepto</b>, no los valores reales del PSA. El PSA tiene <b>baja especificidad</b> en la práctica (por eso genera tantos falsos positivos).</div>
+      <table>
+        <tr><th>Concepto</th><th>Qué mide</th><th>Consecuencia si falla</th></tr>
+        <tr><td><b>Sensibilidad</b></td><td>Detectar a quienes SÍ tienen cáncer (verdaderos positivos).</td><td>—</td></tr>
+        <tr><td><b>Especificidad</b></td><td>Identificar a quienes NO tienen cáncer (verdaderos negativos).</td><td>—</td></tr>
+        <tr><td><b>Falso positivo</b></td><td>La prueba dice “puede haber cáncer” y no lo hay.</td><td>Ansiedad, más exámenes, biopsias innecesarias.</td></tr>
+        <tr><td><b>Falso negativo</b></td><td>La prueba sale normal pero sí hay cáncer.</td><td>Falsa tranquilidad / retraso diagnóstico.</td></tr>
+      </table>
+      <div class="keys"><h4>🎯 Dato real del documento (úsalo, sí está respaldado)</h4><ul>
+        <li>Más del <b>15%</b> de los hombres tiene ≥1 falso positivo en 10 años (tamizaje cada 2–4 años).</li>
+        <li>En los estudios de cohorte de biopsia (ProtecT/VA/Rotterdam), <b>2/3 a 3/4</b> de las biopsias confirmaron que el PSA era un <b>falso positivo</b> → baja especificidad en la práctica.</li>
+      </ul></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ FACTORES DE RIESGO ============ -->
+<section id="riesgo">
+  <h2 class="sec">⚠️ Factores de riesgo</h2>
+  <p class="sec-desc">Los tres grandes que SÍ pesan, y los menores.</p>
+  <div class="grid grid-3">
+    <div class="stat"><div class="n">1️⃣ Edad</div><div class="l">Edad avanzada: el factor más universal.</div></div>
+    <div class="stat"><div class="n">2️⃣ Raza</div><div class="l">Raza/etnia afroamericana.</div></div>
+    <div class="stat"><div class="n">3️⃣ Familia</div><div class="l">Antecedente familiar de cáncer de próstata.</div></div>
+  </div>
+  <details class="col">
+    <summary><span class="tag t-ambar">DETALLE</span> Factores menores y antecedente familiar <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p>Factores con asociación <b>más débil</b>: dietas altas en grasa y bajas en vegetales. El <b>tabaquismo</b> se asocia con mayor <b>mortalidad</b> por cáncer de próstata.</p>
+      <p>Sobre el antecedente familiar:</p>
+      <ul>
+        <li>Estudios de gemelos en Escandinavia: los factores genéticos podrían explicar hasta el <b>42%</b> del riesgo.</li>
+        <li>Tener ≥1 familiar de primer grado afectado → <b>~30% más</b> de probabilidad de diagnóstico.</li>
+        <li>El cáncer de próstata <b>hereditario</b> (3 familiares de 1.er grado, o 2 antes de los 55) representa <b>&lt;10%</b> de todos los casos.</li>
+      </ul>
+      <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0">Los 3 grandes riesgos = <b>"E.A.F."</b> → <b>E</b>dad, <b>A</b>froamericano, <b>F</b>amiliar.</p></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ BENEFICIOS ============ -->
+<section id="benef">
+  <h2 class="sec">✅ Beneficios del tamizaje (pequeños)</h2>
+  <p class="sec-desc">El beneficio existe, pero es modesto y solo demostrado en 55–69 años.</p>
+  <div class="grid grid-2">
+    <div class="stat"><div class="n">1.3</div><div class="l">muertes por cáncer de próstata <b>evitadas</b> por cada 1000 tamizados (~13 años)</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">casos de cáncer <b>metastásico evitados</b> por cada 1000 tamizados</div></div>
+  </div>
+  <div class="keys">
+    <h4>🎯 Puntos clave</h4>
+    <ul>
+      <li>El objetivo es detectar cáncer <b>localizado de alto riesgo</b> tratable, evitando morbimortalidad de la enfermedad avanzada.</li>
+      <li><b>NO se ha demostrado reducción de la mortalidad por TODAS las causas</b> (all-cause mortality) con el tamizaje.</li>
+      <li>El beneficio tarda <b>años o décadas</b> en aparecer; los daños ocurren <b>pronto</b>.</li>
+      <li>En ≥70 años la evidencia es <b>consistente con NINGÚN beneficio</b>.</li>
+    </ul>
+  </div>
+  <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0">El beneficio en números: <b>"1.3 y 3"</b> por cada 1000 → <b>1.3</b> muertes evitadas, <b>3</b> metástasis evitadas. (Beneficio que llega <b>tarde</b>; el daño llega <b>temprano</b>.)</p></div>
+</section>
+
+<!-- ============ DAÑOS ============ -->
+<section id="danos">
+  <h2 class="sec">❌ Daños del tamizaje y diagnóstico</h2>
+  <p class="sec-desc">Aquí está el peso de la balanza: los daños son frecuentes. Dos conceptos estrella: falsos positivos y sobrediagnóstico.</p>
+
+  <details class="col" open>
+    <summary><span class="tag t-rojo">ESTRELLA</span> Sobrediagnóstico y sobretratamiento <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p><b>Sobrediagnóstico:</b> detectar un cáncer asintomático que <b>nunca</b> habría causado síntomas ni contribuido a la muerte. Es uno de los daños <b>más importantes</b> del tamizaje, porque lleva a tratar (sobretratamiento) sin beneficio.</p>
+      <ul>
+        <li>Estimación global: <b>20% a 50%</b> de los cánceres detectados por tamizaje estarían sobrediagnosticados.</li>
+        <li>Ensayo <b>PLCO</b>: ~21%. Ensayo <b>ERSPC</b>: ~50%.</li>
+        <li>Modelos de decisión (CISNET): <b>22% a 42%</b>.</li>
+        <li>El sobrediagnóstico <b>aumenta con la edad</b> (más de 15 veces mayor en &gt;85 que en 50–54 años).</li>
+      </ul>
+      <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0"><b>Sobrediagnóstico = "cáncer que no iba a hacer nada"</b>. Entre <b>1 de cada 5 y 1 de cada 2</b> (20–50%) de los detectados.</p></div>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-rojo">DAÑO</span> Falsos positivos y daños de la biopsia <span class="chev">›</span></summary>
+    <div class="col-body">
+      <ul>
+        <li>Un ensayo: más del <b>15%</b> de los hombres tuvieron al menos 1 falso positivo en 10 años (tamizaje cada 2–4 años).</li>
+        <li>En 5 sitios del ERSPC: ~<b>1 de cada 6</b> hombres tuvo ≥1 falso positivo; en Suecia, &gt;<b>45%</b> tras 10 años de rondas.</li>
+        <li>Daños de la <b>biopsia</b>: dolor, hematospermia (sangre en semen), fiebre e infección. ~<b>1%</b> de las biopsias terminan en hospitalización.</li>
+        <li>Daños <b>psicológicos</b>: ansiedad y preocupación tras un PSA anormal, incluso con biopsia benigna.</li>
+      </ul>
+      <div class="keys"><h4>🎯 Punto clave</h4><ul><li>En los grandes ensayos, <b>2/3 a 3/4</b> de las biopsias mostraron que el PSA era un <b>falso positivo</b>.</li></ul></div>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-ambar">EDAD</span> ¿Por qué más daños en ≥70 años? <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p>Los daños del tamizaje en mayores de 70 son <b>al menos moderados y mayores</b> que en jóvenes por:</p>
+      <ul>
+        <li>Mayor riesgo de <b>falsos positivos</b>.</li>
+        <li>Más daños por <b>biopsias</b> y complicaciones.</li>
+        <li>Más <b>sobrediagnóstico</b> (aumenta con la edad).</li>
+        <li>Mayor riesgo de <b>complicaciones del tratamiento</b> y mortalidad perioperatoria.</li>
+        <li>Alta probabilidad de morir por <b>causas competidoras</b> antes de que el cáncer importe.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ============ TRATAMIENTOS ============ -->
+<section id="trat">
+  <h2 class="sec">🏥 Tratamientos y sus daños</h2>
+  <p class="sec-desc">Las 3 opciones para cáncer localizado detectado por tamizaje, y por qué tratar también daña.</p>
+
+  <div class="grid grid-3">
+    <div class="card"><h4 style="margin-top:0;color:var(--rojo)">1. Prostatectomía radical</h4><p style="margin:0;font-size:14.5px">Extirpación quirúrgica de la próstata.</p></div>
+    <div class="card"><h4 style="margin-top:0;color:var(--azul)">2. Radioterapia</h4><p style="margin:0;font-size:14.5px">Haz externo, terapia de protones o braquiterapia.</p></div>
+    <div class="card"><h4 style="margin-top:0;color:var(--verde)">3. Vigilancia activa</h4><p style="margin:0;font-size:14.5px">Monitoreo con PSA + biopsias repetidas, sin tratar de inmediato.</p></div>
+  </div>
+
+  <details class="col" open>
+    <summary><span class="tag t-rojo">NÚMEROS</span> Daños del tratamiento (¡memorizar!) <span class="chev">›</span></summary>
+    <div class="col-body">
+      <table>
+        <tr><th>Tratamiento</th><th>Daño</th><th>Frecuencia</th></tr>
+        <tr><td rowspan="2"><b>Prostatectomía radical</b></td><td>Incontinencia urinaria a largo plazo (pañales)</td><td><b>1 de cada 5</b></td></tr>
+        <tr><td>Disfunción eréctil a largo plazo</td><td><b>2 de cada 3</b></td></tr>
+        <tr><td rowspan="2"><b>Radioterapia</b></td><td>Disfunción eréctil a largo plazo</td><td><b>&gt; la mitad</b></td></tr>
+        <tr><td>Síntomas intestinales molestos (urgencia, incontinencia fecal)</td><td><b>hasta 1 de cada 6</b></td></tr>
+        <tr><td><b>Cirugía (general)</b></td><td>Muerte durante o poco después / complicaciones serias</td><td>~3 y ~50 por 1000</td></tr>
+      </table>
+      <div class="keys"><h4>🎯 Punto clave</h4><ul>
+        <li>La <b>vigilancia activa</b> busca <b>limitar</b> los daños del tratamiento dejando en observación el cáncer de bajo riesgo. Es cada vez más usada y explica en parte por qué subió el grado a C.</li>
+        <li>El tratamiento de cáncer localizado precoz <b>probablemente reduce</b> progresión y mortalidad, pero con estos daños frecuentes.</li>
+      </ul></div>
+      <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0">Cirugía = <b>"1 de 5 moja, 2 de 3 no levanta"</b> → <b>1/5</b> incontinencia, <b>2/3</b> disfunción eréctil.</p></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ ENSAYOS ============ -->
+<section id="ensayos">
+  <h2 class="sec">🔬 Los 3 grandes ensayos clínicos (RCTs)</h2>
+  <p class="sec-desc">El examinador puede pedir distinguirlos. Asocia cada uno a su país, resultado y limitación.</p>
+
+  <details class="col">
+    <summary><span class="tag t-rojo">USA · negativo</span> PLCO <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p><b>PLCO</b> = Prostate, Lung, Colorectal and Ovarian Cancer Screening Trial (EE.UU.).</p>
+      <ul>
+        <li><b>No</b> encontró diferencia en muertes por cáncer de próstata entre tamizados y control (RR ~1.04).</li>
+        <li><b>Limitación clave: contaminación</b> — una parte enorme del grupo control también se hizo PSA (estimado <b>78%</b>), lo que diluye cualquier diferencia.</li>
+        <li>~21% de sobrediagnóstico estimado.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-verde">Europa · positivo</span> ERSPC <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p><b>ERSPC</b> = European Randomized Study of Screening for Prostate Cancer. <b>Es el ensayo que aporta la evidencia más importante a favor.</b></p>
+      <ul>
+        <li><b>NNT = 781</b> hombres (55–69 años) a tamizar para prevenir 1 muerte por cáncer de próstata tras 13 años.</li>
+        <li>Reducción de <b>~30%</b> en cáncer metastásico (reducción absoluta 3.1 por 1000).</li>
+        <li>Reducción de mortalidad significativa <b>solo en Países Bajos y Suecia</b> (no en todos los sitios).</li>
+        <li>En Göteborg (Suecia): tamizaje cada 2 años, umbral bajo → reducción relativa <b>42%</b>, absoluta 0.72%.</li>
+        <li><b>No</b> halló reducción de mortalidad por todas las causas. ~50% de sobrediagnóstico.</li>
+      </ul>
+      <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0"><b>ERSPC → "781"</b> es el número que tienes que poder soltar: hay que tamizar a <b>781</b> para salvar <b>1</b> vida.</p></div>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-rojo">UK · negativo</span> CAP <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p><b>CAP</b> = Cluster Randomized Trial of PSA Testing for Prostate Cancer (Reino Unido).</p>
+      <ul>
+        <li>Probó un <b>tamizaje ÚNICO</b> de PSA en 415.357 hombres.</li>
+        <li><b>Sin</b> diferencia significativa en mortalidad por cáncer de próstata (RR ~0.99) tras 10 años.</li>
+        <li>Diferencia pequeña entre tamizados reales (~34%) y control (~10–15%).</li>
+      </ul>
+      <div class="keys"><h4>🎯 Síntesis de los 3</h4><ul><li><b>Ningún</b> ensayo (PLCO, ERSPC ni CAP) demostró reducción de la mortalidad por <b>todas las causas</b>.</li></ul></div>
+      <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0"><b>"El Europeo gana"</b>: PLCO (USA) y CAP (UK) = negativos; <b>ERSPC (Europa)</b> = el único positivo (NNT 781).</p></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ POBLACIONES ============ -->
+<section id="poblac">
+  <h2 class="sec">👥 Poblaciones especiales</h2>
+  <p class="sec-desc">Afroamericanos y antecedente familiar: mayor riesgo, pero evidencia insuficiente para recomendación separada.</p>
+
+  <details class="col">
+    <summary><span class="tag t-rojo">RIESGO ALTO</span> Hombres afroamericanos <span class="chev">›</span></summary>
+    <div class="col-body">
+      <ul>
+        <li>Mayor incidencia (203.5 vs 121.9 /100.000) y <b>más del doble</b> de mortalidad (44.1 vs 19.1 /100.000) que blancos.</li>
+        <li>Aparición a edad más temprana, etapa más avanzada al diagnóstico y tumores más agresivos.</li>
+        <li>Los grandes ensayos incluyeron <b>muy pocos</b> afroamericanos (PLCO ~4%) → evidencia <b>insuficiente</b> para saber si el beneficio difiere.</li>
+        <li>El USPSTF <b>NO hace una recomendación separada</b>, pero anima a informarles sobre su mayor riesgo para una decisión personal. (No se tamiza a ningún hombre ≥70, incluidos afroamericanos.)</li>
+        <li>Llamado a más <b>investigación</b> como prioridad nacional.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-ambar">RIESGO ALTO</span> Antecedente familiar de cáncer de próstata <span class="chev">›</span></summary>
+    <div class="col-body">
+      <ul>
+        <li>Mayor probabilidad de desarrollarlo; genética explica hasta <b>42%</b> del riesgo (gemelos).</li>
+        <li>Los más propensos a beneficiarse: antecedente de familiar de 1.er grado con cáncer <b>avanzado, metastásico o que murió</b> por él.</li>
+        <li><b>No</b> hay estudios sobre los daños del tamizaje específicamente en este grupo → evidencia insuficiente para recomendación separada.</li>
+        <li>Tampoco se tamiza a ≥70 años con antecedente familiar.</li>
+      </ul>
+      <div class="keys"><h4>🎯 Patrón común</h4><ul><li>En ambos grupos de alto riesgo: <b>más riesgo basal</b>, pero <b>evidencia insuficiente</b> → misma recomendación general (informar y decidir; nunca tamizar ≥70).</li></ul></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ CAMBIO 2012-2018 ============ -->
+<section id="cambio">
+  <h2 class="sec">🔄 Qué cambió de 2012 a 2018</h2>
+  <p class="sec-desc">Pregunta clásica de parcial. El grado para 55–69 SUBIÓ de D a C.</p>
+  <div class="grid grid-2">
+    <div class="card" style="border-top:4px solid var(--muted);">
+      <h3 style="margin-top:0">2012 (anterior)</h3>
+      <p><span class="gD">Grado D para TODOS</span> los hombres: el USPSTF recomendaba <b>en contra</b> del tamizaje con PSA en cualquier edad. Los beneficios no superaban los daños.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--rojo);">
+      <h3 style="margin-top:0">2018 (actual)</h3>
+      <p><span class="gC">C (55–69)</span> + <span class="gD">D (≥70)</span>. Para 55–69 pasó a <b>decisión individual informada</b>; se mantiene en contra para ≥70.</p>
+    </div>
+  </div>
+  <details class="col">
+    <summary><span class="tag t-azul">¿POR QUÉ?</span> Razones del cambio de D a C en 55–69 <span class="chev">›</span></summary>
+    <div class="col-body">
+      <ul>
+        <li><b>Seguimiento más largo del ERSPC</b> (13 años) → más confianza en que el beneficio puede ser mayor a 20–30 años; vidas salvadas subieron de ~1.07 a ~1.28 por 1000.</li>
+        <li>Nuevos datos sobre reducción de <b>enfermedad metastásica</b> con el tamizaje.</li>
+        <li>Mayor uso de la <b>vigilancia activa</b> en cáncer de bajo riesgo → reduce los daños del <b>sobretratamiento</b>.</li>
+        <li>El nuevo ensayo <b>CAP</b> (negativo) no cambió la conclusión global.</li>
+      </ul>
+      <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0">Subió de <b>D→C</b> por <b>"más tiempo + vigilancia activa"</b>: más seguimiento del ERSPC y el auge de la vigilancia activa (que recorta los daños del tratamiento).</p></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ OTRAS GUÍAS ============ -->
+<section id="otros">
+  <h2 class="sec">🏛️ Recomendaciones de otras organizaciones</h2>
+  <p class="sec-desc">Útil para preguntas comparativas. Nota quién está en contra y quién matiza por expectativa de vida.</p>
+  <table>
+    <tr><th>Organización</th><th>Postura</th></tr>
+    <tr><td>American Academy of Family Physicians (AAFP)</td><td><span class="gD">En contra</span> del tamizaje con PSA.</td></tr>
+    <tr><td>Canadian Task Force on Preventive Health Care</td><td><span class="gD">En contra</span> del tamizaje con PSA.</td></tr>
+    <tr><td>American College of Physicians (ACP)</td><td>Discutir en 50–69 años; tamizar solo si <b>expectativa de vida &gt;10–15 años</b>.</td></tr>
+    <tr><td>American Urological Association (AUA)</td><td>55–69 años con expectativa de vida &gt;10–15 años, <b>decisión compartida</b>; intervalo ≥2 años.</td></tr>
+    <tr><td>American Cancer Society (ACS)</td><td>Conversaciones desde los <b>50</b> años; <b>antes</b> para afroamericanos y para hombres con padre o hermano con cáncer de próstata <b>antes de los 65</b> años.</td></tr>
+  </table>
+  <div class="keys"><h4>🎯 Punto clave</h4><ul><li>Hay <b>consenso</b> en la <b>decisión compartida</b> y en <b>no tamizar a quien tiene poca expectativa de vida</b>; varían las edades de inicio.</li></ul></div>
+</section>
+
+<!-- ============ ARGUMENTOS / DEBATE ============ -->
+<section id="argumentos">
+  <h2 class="sec">⚖️ Argumentos para el debate</h2>
+  <p class="sec-desc">Kit listo para defender la postura USPSTF. <b>Ojo con el rol:</b> el USPSTF NO empuja a tamizar — defiende una <b>decisión informada y compartida</b>. Por eso necesitas argumentos de los DOS lados; ganas el debate demostrando que el paciente entendió cuánto puede ganar y cuánto puede perder.</p>
+
+  <div class="alert">🎯 <b>Frase que da la nota máxima:</b> “El USPSTF no busca decirle al paciente qué hacer; busca que tome una <b>decisión informada</b> entendiendo claramente cuánto puede ganar y cuánto puede perder con el tamizaje.”</div>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-top:4px solid var(--verde);">
+      <h3 style="margin-top:0;color:var(--verde)">✅ 3 argumentos FUERTES a favor</h3>
+      <ol style="padding-left:18px;margin:0">
+        <li style="margin-bottom:10px"><b>Salva vidas y evita metástasis (evidencia de ECA).</b> El ERSPC demostró que en 55–69 años el tamizaje previene ~<b>1.3 muertes</b> y ~<b>3 cánceres metastásicos</b> por cada 1000 hombres (reducción ~30% en metástasis; <b>NNT 781</b> a 13 años). No es teoría: es un ensayo aleatorizado.</li>
+        <li style="margin-bottom:10px"><b>Detección temprana de cáncer curable.</b> Permite encontrar el cáncer localizado de riesgo alto/medio cuando aún es <b>tratable con intención curativa</b>, antes de que progrese a enfermedad avanzada (que es la que mata).</li>
+        <li><b>La vigilancia activa reduce el daño del sobretratamiento.</b> Hoy “detectar” ya NO es “operar”: el cáncer de bajo riesgo se puede <b>vigilar</b>. Este avance mejoró el balance y motivó que el USPSTF subiera de <b>D (2012) → C (2018)</b>.</li>
+      </ol>
+    </div>
+    <div class="card" style="border-top:4px solid var(--rojo);">
+      <h3 style="margin-top:0;color:var(--rojo)">❌ 3 argumentos FUERTES en contra</h3>
+      <ol style="padding-left:18px;margin:0">
+        <li style="margin-bottom:10px"><b>Sobrediagnóstico y sobretratamiento.</b> Entre <b>20% y 50%</b> de los cánceres detectados nunca habrían dado síntomas, pero igual se tratan, con daños <b>permanentes</b>: 1 de cada 5 incontinencia, 2 de cada 3 disfunción eréctil tras cirugía.</li>
+        <li style="margin-bottom:10px"><b>Beneficio pequeño y sin reducir la mortalidad total.</b> Solo ~1.3 muertes evitadas por 1000; <b>ningún</b> ensayo (PLCO, ERSPC, CAP) redujo la mortalidad por <b>todas las causas</b>. El beneficio llega <b>tarde</b> (años/décadas); el daño llega <b>pronto</b>.</li>
+        <li><b>Falsos positivos y cascada diagnóstica.</b> El PSA no es específico (sube por HPB y prostatitis); &gt;<b>15%</b> tienen un falso positivo en 10 años → biopsias innecesarias (dolor, infección, ~1% hospitalización) y ansiedad. En <b>≥70 años los daños superan al beneficio</b> (grado D).</li>
+      </ol>
+    </div>
+  </div>
+
+  <details class="col">
+    <summary><span class="tag t-ambar">DÉBILES</span> Argumentos débiles “para defender si acaso” (y su contraataque) <span class="chev">›</span></summary>
+    <div class="col-body">
+      <p>Estos son flojos: <b>úsalos solo de relleno</b> y sabiendo que te los pueden rebatir. Aquí está el contraataque para que no te agarren desprevenido.</p>
+      <p style="margin-bottom:4px"><b>Débiles a FAVOR:</b></p>
+      <table>
+        <tr><th>Argumento débil</th><th>Por qué es débil / contraataque</th></tr>
+        <tr><td>“Es solo una muestra de sangre, no pierde nada.”</td><td>El daño no es el pinchazo, es la <b>cascada</b> que desencadena (biopsia → sobrediagnóstico → tratamiento). Te lo rebaten fácil.</td></tr>
+        <tr><td>“Mejor prevenir que lamentar / detectar todo cáncer es bueno.”</td><td>Ignora el <b>sobrediagnóstico</b>: detectar un cáncer indolente no salva, sí daña.</td></tr>
+        <tr><td>“Con antecedente familiar o afroamericanos se benefician más.”</td><td>Plausible y razonable mencionarlo, pero el documento dice que la evidencia es <b>INSUFICIENTE</b> para recomendación separada. Dilo como “podrían beneficiarse”, no como hecho probado.</td></tr>
+        <tr><td>“La gente vive más; habría que tamizar después de los 70.”</td><td>El USPSTF ya consideró la mayor expectativa de vida y <b>mantuvo el grado D</b> (rechazó ese comentario público).</td></tr>
+      </table>
+      <p style="margin:14px 0 4px"><b>Débiles en CONTRA:</b></p>
+      <table>
+        <tr><th>Argumento débil</th><th>Por qué es débil / contraataque</th></tr>
+        <tr><td>“El PLCO no mostró beneficio, el PSA no sirve.”</td><td>El PLCO estaba <b>contaminado</b> (≈78% del control también se hizo PSA); su resultado negativo <b>no es concluyente</b>.</td></tr>
+        <tr><td>“El tacto rectal no sirve, entonces el tamizaje no sirve.”</td><td>Lo que no se recomienda es el <b>tacto rectal (DRE)</b> como tamizaje; eso no descarta el PSA. Confunde dos cosas.</td></tr>
+        <tr><td>“Es muy caro.”</td><td><b>Fuera de marco:</b> el USPSTF explícitamente <b>NO considera costos</b>. Argumentar por precio te saca de la evidencia.</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="col">
+    <summary><span class="tag t-azul">RÉPLICAS</span> Cómo responder los contraargumentos del paciente <span class="chev">›</span></summary>
+    <div class="col-body">
+      <table>
+        <tr><th>Si te dicen…</th><th>Respondes…</th></tr>
+        <tr><td>“Los beneficios son muy pequeños.”</td><td>“Es cierto que son modestos, pero para algunos hombres evitar una muerte por cáncer tiene un valor enorme. Por eso depende de <b>sus</b> valores.”</td></tr>
+        <tr><td>“Hay muchos falsos positivos.”</td><td>“Exacto, por eso la decisión debe ser <b>informada y compartida</b>, no automática.”</td></tr>
+        <tr><td>“Muchos cánceres nunca progresan.”</td><td>“Justo por eso hoy usamos la <b>vigilancia activa</b>, para no tratar de más lo que no lo necesita.”</td></tr>
+        <tr><td>“¿Me puedo morir por no hacérmelo?”</td><td>“Es posible, pero la <b>mayoría</b> de hombres nunca muere por cáncer de próstata (riesgo de por vida 2.5%).”</td></tr>
+        <tr><td>“Si sale alto, ¿tengo cáncer?”</td><td>“No necesariamente. Muchas elevaciones del PSA son por causas <b>benignas</b> (HPB, prostatitis).”</td></tr>
+        <tr><td>“Tengo 72 años, ¿me lo hago?”</td><td>“A su edad <b>no lo recomendamos</b>: los riesgos superan los beneficios (grado D).”</td></tr>
+      </table>
+    </div>
+  </details>
+</section>
+
+<!-- ============ TABLA 1000 ============ -->
+<section id="tabla">
+  <h2 class="sec">🧮 La "tabla de los 1000 hombres" (55–69 años, 13 años)</h2>
+  <p class="sec-desc">El dato cuantitativo más potente del documento. Si lo dices de memoria, impresionas. Resaltados = los que más caen.</p>
+  <div class="card">
+    <table class="t1000">
+      <tr><th>De cada 1000 hombres invitados a tamizaje…</th><th>N.º</th></tr>
+      <tr class="hl"><td>Reciben al menos 1 PSA positivo</td><td>240</td></tr>
+      <tr><td>Se hacen 1 o más biopsias transrectales</td><td>220</td></tr>
+      <tr><td>Hospitalizados por complicación de la biopsia</td><td>2</td></tr>
+      <tr class="hl"><td>Diagnosticados con cáncer de próstata</td><td>100</td></tr>
+      <tr><td>Reciben tratamiento activo inicial (cirugía o radioterapia)</td><td>65</td></tr>
+      <tr><td>Reciben vigilancia activa inicial</td><td>30</td></tr>
+      <tr><td>Con disfunción sexual por el tratamiento</td><td>50</td></tr>
+      <tr><td>Con incontinencia urinaria por el tratamiento</td><td>15</td></tr>
+      <tr class="hl"><td>Evitan un cáncer metastásico</td><td>3</td></tr>
+      <tr><td>Mueren por OTRAS causas</td><td>200</td></tr>
+      <tr><td>Mueren de cáncer de próstata A PESAR del tamizaje</td><td>5</td></tr>
+      <tr class="hl"><td><b>Evitan morir de cáncer de próstata</b></td><td><b>1.3</b></td></tr>
+    </table>
+  </div>
+  <div class="mnemo"><span class="lbl">🧠 Inolvidable</span><p style="margin:0">El "telón de fondo": de 1000, <b>200 mueren de otras cosas</b> y solo <b>1.3 se salvan</b> del cáncer de próstata → ilustra por qué el beneficio es <b>pequeño</b>.</p></div>
+</section>
+
+<!-- ============ PALABRAS CLAVE ============ -->
+<section id="palabras">
+  <h2 class="sec">🔑 Palabras clave / Glosario</h2>
+  <p class="sec-desc">Términos que debes reconocer y poder definir en una línea.</p>
+  <div class="card">
+    <span class="kw"><b>USPSTF</b> · grupo independiente de prevención</span>
+    <span class="kw"><b>PSA</b> · antígeno prostático específico (sangre)</span>
+    <span class="kw"><b>Tamizaje/Screening</b> · buscar enfermedad en asintomáticos</span>
+    <span class="kw"><b>Falso positivo</b> · PSA+ sin cáncer</span>
+    <span class="kw"><b>Sobrediagnóstico</b> · detectar cáncer que no iba a dañar</span>
+    <span class="kw"><b>Sobretratamiento</b> · tratar un sobrediagnóstico</span>
+    <span class="kw"><b>Vigilancia activa</b> · monitoreo en vez de tratar</span>
+    <span class="kw"><b>Espera vigilante</b> · watchful waiting (más pasivo)</span>
+    <span class="kw"><b>Prostatectomía radical</b> · extirpar la próstata</span>
+    <span class="kw"><b>Braquiterapia</b> · radioterapia interna</span>
+    <span class="kw"><b>HPB</b> · hiperplasia prostática benigna</span>
+    <span class="kw"><b>Prostatitis</b> · inflamación de la próstata</span>
+    <span class="kw"><b>NNT</b> · número necesario a tamizar (781)</span>
+    <span class="kw"><b>Beneficio neto</b> · beneficios − daños</span>
+    <span class="kw"><b>Certeza moderada</b> · nivel de evidencia del PSA</span>
+    <span class="kw"><b>Decisión compartida</b> · paciente + clínico deciden</span>
+    <span class="kw"><b>Biopsia core-needle</b> · aguja gruesa transrectal</span>
+    <span class="kw"><b>Hematospermia</b> · sangre en el semen (daño de biopsia)</span>
+    <span class="kw"><b>Mortalidad por todas las causas</b> · no se redujo</span>
+    <span class="kw"><b>RCT</b> · ensayo clínico aleatorizado</span>
+    <span class="kw"><b>PLCO · ERSPC · CAP</b> · los 3 grandes ensayos</span>
+  </div>
+</section>
+
+<!-- ============ INOLVIDABLES ============ -->
+<section id="inolvidables">
+  <h2 class="sec">🧠 Los "Inolvidables" — repaso relámpago</h2>
+  <p class="sec-desc">Todas las mnemotecnias juntas. Si memorizas SOLO esta sección, ya cubres el 80% del parcial.</p>
+  <div class="card">
+    <div class="mnemo"><span class="lbl">Recomendaciones</span><p style="margin:0"><b>"55–69 deCides (C) · ≥70 Detente (D)"</b></p></div>
+    <div class="mnemo"><span class="lbl">Grados</span><p style="margin:0"><b>A</b>delante · <b>B</b>ien · <b>C</b>onversa · <b>D</b>etente · <b>I</b>ncierto</p></div>
+    <div class="mnemo"><span class="lbl">Riesgo</span><p style="margin:0">Los 3 grandes = <b>E.A.F.</b> → <b>E</b>dad, <b>A</b>froamericano, <b>F</b>amiliar</p></div>
+    <div class="mnemo"><span class="lbl">PSA alto</span><p style="margin:0"><b>"Cáncer, Crecimiento (HPB) o Candela (prostatitis)"</b></p></div>
+    <div class="mnemo"><span class="lbl">Beneficio</span><p style="margin:0"><b>"1.3 y 3"</b> por 1000 → 1.3 muertes y 3 metástasis evitadas. Beneficio <b>tarde</b>, daño <b>temprano</b>.</p></div>
+    <div class="mnemo"><span class="lbl">Daños cirugía</span><p style="margin:0"><b>"1 de 5 moja, 2 de 3 no levanta"</b> → 1/5 incontinencia, 2/3 disfunción eréctil.</p></div>
+    <div class="mnemo"><span class="lbl">Sobrediagnóstico</span><p style="margin:0"><b>20–50%</b> ("de 1 de cada 5 a 1 de cada 2") = cáncer que no iba a hacer nada.</p></div>
+    <div class="mnemo"><span class="lbl">Ensayos</span><p style="margin:0">"El Europeo gana": PLCO (USA) y CAP (UK) <b>negativos</b>; <b>ERSPC positivo</b>, <b>NNT 781</b>.</p></div>
+    <div class="mnemo"><span class="lbl">Cambio 2012→2018</span><p style="margin:0"><b>D→C</b> por "más tiempo (ERSPC 13 años) + vigilancia activa".</p></div>
+    <div class="mnemo"><span class="lbl">Epidemiología</span><p style="margin:0"><b>11% se diagnostica, 2.5% muere, edad media de muerte 80.</b></p></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <h2 class="sec">📝 Autoevaluación tipo parcial</h2>
+  <p class="sec-desc">Responde sin mirar. Cada pregunta explica la respuesta. Objetivo: 10/10.</p>
+  <div id="quizbox"></div>
+  <div id="score">Puntaje: 0 / 10 — ¡empieza a responder!</div>
+</section>
+
+<!-- ============ RESUMEN ============ -->
+<section id="resumen">
+  <h2 class="sec">⚡ Resumen de 1 página (repaso final)</h2>
+  <div class="card">
+    <p><b>Documento:</b> USPSTF — Screening for Prostate Cancer (JAMA 2018;319(18):1901-1913). Actualiza la guía de 2012.</p>
+    <p><b>Recomendaciones núcleo:</b> <span class="pill">55–69 años = C</span> (decisión individual informada) · <span class="pill">≥70 años = D</span> (no tamizar). Certeza <b>moderada</b> en ambas.</p>
+    <p><b>Prueba:</b> PSA en sangre. Sube por cáncer, HPB o prostatitis → <b>falsos positivos</b>. El tacto rectal NO se recomienda como tamizaje.</p>
+    <p><b>Riesgo:</b> edad, raza afroamericana, antecedente familiar (E.A.F.). En afroamericanos y antecedente familiar: más riesgo pero evidencia insuficiente para recomendación aparte.</p>
+    <p><b>Balance:</b> beneficio <b>pequeño</b> (por 1000: 1.3 muertes y 3 metástasis evitadas; sin reducir mortalidad total) vs daños <b>frecuentes</b> (sobrediagnóstico 20–50%, falsos positivos, daños de biopsia y tratamiento: 1/5 incontinencia y 2/3 disfunción eréctil tras cirugía).</p>
+    <p><b>Tratamientos:</b> prostatectomía radical, radioterapia, vigilancia activa.</p>
+    <p><b>Evidencia:</b> PLCO (USA, negativo, contaminado), <b>ERSPC (Europa, positivo, NNT 781)</b>, CAP (UK, negativo). Ninguno redujo la mortalidad por todas las causas.</p>
+    <p><b>Cambio 2012→2018:</b> de D a C en 55–69 por seguimiento más largo del ERSPC y mayor uso de vigilancia activa.</p>
+    <p style="margin-bottom:0"><b>Mensaje final:</b> el tamizaje con PSA es una <b>decisión personal e informada</b>, no una orden; el beneficio es real pero modesto y se concentra en 55–69 años.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Guía interactiva de estudio</b> · Carpeta "Parcial Prima Vicky" · Basada íntegramente en el documento USPSTF (JAMA 2018).</p>
+  <p>Hecho para repasar, autoevaluar y sacar <b>5.0</b>. 💪 Tip: usa <b>Cmd/Ctrl + P</b> para guardar como PDF o imprimir.</p>
+</footer>
+
+<script>
+/* ====== Datos del quiz ====== */
+const QUIZ = [
+  {
+    q: "¿Qué grado y conducta recomienda el USPSTF para hombres de 55 a 69 años?",
+    opts: [
+      "Grado A: tamizar a todos siempre",
+      "Grado C: decisión individual e informada con el clínico",
+      "Grado D: recomienda en contra del tamizaje",
+      "I statement: evidencia insuficiente"
+    ],
+    correct: 1,
+    exp: "Grado C: el tamizaje se ofrece selectivamente según los valores y preferencias del paciente tras discutir beneficios y daños. Certeza moderada de beneficio neto pequeño."
+  },
+  {
+    q: "¿Y para hombres de 70 años o más?",
+    opts: [
+      "Grado B: recomienda con certeza moderada",
+      "Grado C: decisión individual",
+      "Grado D: recomienda EN CONTRA del tamizaje con PSA",
+      "Grado A: tamizaje universal"
+    ],
+    correct: 2,
+    exp: "Grado D: los daños (falsos positivos, biopsias, sobrediagnóstico, tratamiento) superan al beneficio, y muchos mueren antes por otras causas."
+  },
+  {
+    q: "Un PSA elevado puede deberse a cáncer, pero TAMBIÉN a causas benignas. ¿Cuáles?",
+    opts: [
+      "Diabetes y obesidad",
+      "Hiperplasia prostática benigna (HPB) y prostatitis",
+      "Tabaquismo y dieta alta en grasa",
+      "Hipertensión y dislipidemia"
+    ],
+    correct: 1,
+    exp: "El PSA no es específico de cáncer: la próstata agrandada (HPB) y la inflamación (prostatitis) también lo elevan → falsos positivos."
+  },
+  {
+    q: "¿Cuáles son los TRES factores de riesgo más importantes?",
+    opts: [
+      "Tabaquismo, dieta y sedentarismo",
+      "Edad avanzada, raza afroamericana y antecedente familiar",
+      "Obesidad, alcohol y estrés",
+      "Vasectomía, infecciones y nivel socioeconómico"
+    ],
+    correct: 1,
+    exp: "Los tres grandes (E.A.F.): Edad avanzada, raza Afroamericana y antecedente Familiar de cáncer de próstata."
+  },
+  {
+    q: "¿Qué es el SOBREDIAGNÓSTICO en este contexto?",
+    opts: [
+      "Diagnosticar cáncer en el órgano equivocado",
+      "Detectar un cáncer asintomático que nunca habría causado síntomas ni muerte",
+      "Pedir demasiadas pruebas de PSA al año",
+      "Un error de laboratorio en el valor del PSA"
+    ],
+    correct: 1,
+    exp: "Sobrediagnóstico = detectar cáncer que nunca iba a importar. Se estima en 20–50% de los cánceres detectados por tamizaje, y lleva al sobretratamiento."
+  },
+  {
+    q: "Tras una prostatectomía radical, ¿con qué frecuencia ocurren los daños a largo plazo?",
+    opts: [
+      "1 de cada 100 incontinencia; 1 de cada 50 disfunción eréctil",
+      "1 de cada 5 incontinencia urinaria; 2 de cada 3 disfunción eréctil",
+      "Ninguno relevante a largo plazo",
+      "La mitad muere en la cirugía"
+    ],
+    correct: 1,
+    exp: "1 de cada 5 desarrolla incontinencia urinaria a largo plazo y 2 de cada 3, disfunción eréctil. ('1 de 5 moja, 2 de 3 no levanta')."
+  },
+  {
+    q: "¿Cuál de los grandes ensayos fue POSITIVO y aportó la evidencia clave a favor del tamizaje?",
+    opts: [
+      "PLCO (Estados Unidos)",
+      "CAP (Reino Unido)",
+      "ERSPC (Europa), con NNT de 781",
+      "Ninguno fue positivo"
+    ],
+    correct: 2,
+    exp: "El ERSPC (europeo) mostró beneficio: hay que tamizar a 781 hombres para evitar 1 muerte tras 13 años. PLCO y CAP fueron negativos."
+  },
+  {
+    q: "Aproximadamente, por cada 1000 hombres de 55–69 años tamizados durante ~13 años, ¿cuántas muertes por cáncer de próstata se evitan?",
+    opts: [
+      "Unas 50 muertes",
+      "Unas 1.3 muertes",
+      "Ninguna",
+      "Unas 200 muertes"
+    ],
+    correct: 1,
+    exp: "Solo ~1.3 muertes evitadas (y ~3 metástasis evitadas) por 1000. En contraste, ~200 de esos 1000 mueren por otras causas → beneficio pequeño."
+  },
+  {
+    q: "¿Qué cambió entre la recomendación de 2012 y la de 2018 para hombres de 55–69 años?",
+    opts: [
+      "Pasó de C a D (se volvió más restrictiva)",
+      "Pasó de D (en contra) a C (decisión individual)",
+      "No hubo ningún cambio",
+      "Pasó de I a A"
+    ],
+    correct: 1,
+    exp: "Subió de D a C gracias al seguimiento más largo del ERSPC y al mayor uso de la vigilancia activa, que reduce los daños del sobretratamiento."
+  },
+  {
+    q: "¿El tamizaje con PSA demostró reducir la mortalidad por TODAS las causas?",
+    opts: [
+      "Sí, en los tres ensayos",
+      "No: ningún ensayo (PLCO, ERSPC, CAP) mostró reducción de la mortalidad por todas las causas",
+      "Solo en el PLCO",
+      "Solo en hombres mayores de 70 años"
+    ],
+    correct: 1,
+    exp: "Correcto: ninguno de los ensayos demostró reducción de la mortalidad por todas las causas; a lo sumo, reducción de la mortalidad específica por cáncer de próstata (ERSPC)."
+  }
+];
+
+/* ====== Render del quiz ====== */
+let answered = 0, correctCount = 0;
+const box = document.getElementById('quizbox');
+QUIZ.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'quiz-q';
+  let html = `<div class="qnum">PREGUNTA ${i+1} DE ${QUIZ.length}</div>
+              <div class="qtext">${item.q}</div>`;
+  item.opts.forEach((o, j) => {
+    html += `<button class="opt" data-q="${i}" data-o="${j}">${String.fromCharCode(65+j)}. ${o}</button>`;
+  });
+  html += `<div class="feedback" id="fb-${i}"></div>`;
+  div.innerHTML = html;
+  box.appendChild(div);
+});
+
+const scoreEl = document.getElementById('score');
+box.addEventListener('click', e => {
+  if(!e.target.classList.contains('opt')) return;
+  const qi = +e.target.dataset.q, oi = +e.target.dataset.o;
+  const item = QUIZ[qi];
+  const parent = e.target.closest('.quiz-q');
+  if(parent.dataset.done) return;            // ya respondida
+  parent.dataset.done = "1";
+  answered++;
+  const buttons = parent.querySelectorAll('.opt');
+  buttons.forEach(b => {
+    b.disabled = true;
+    const bi = +b.dataset.o;
+    if(bi === item.correct) b.classList.add('ok');
+    if(bi === oi && oi !== item.correct) b.classList.add('no');
+  });
+  const fb = document.getElementById('fb-'+qi);
+  if(oi === item.correct){
+    correctCount++;
+    fb.className = 'feedback good show';
+    fb.innerHTML = '✅ <b>¡Correcto!</b> ' + item.exp;
+  } else {
+    fb.className = 'feedback bad show';
+    fb.innerHTML = '❌ <b>Incorrecto.</b> ' + item.exp;
+  }
+  updateScore();
+});
+
+function updateScore(){
+  let msg = `Puntaje: ${correctCount} / ${QUIZ.length}`;
+  if(answered === QUIZ.length){
+    if(correctCount === QUIZ.length) msg += ' — 🏆 ¡PERFECTO! Listo para el 5.0';
+    else if(correctCount >= 8)       msg += ' — 💪 ¡Muy bien! Repasa los fallos';
+    else if(correctCount >= 6)       msg += ' — 🔄 Vas bien, refuerza los temas fallados';
+    else                              msg += ' — 📖 Vuelve a leer las secciones y reintenta';
+  } else {
+    msg += ` · respondidas ${answered}/${QUIZ.length}`;
+  }
+  scoreEl.textContent = msg;
+}
+</script>
+</body>
+</html>
